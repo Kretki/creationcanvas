@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://u2xhkdukfws8"]
+
+[ext_resource type="Script" uid="uid://tq34h0umam4s" path="res://MenuScenes/scripts/bottom_menu.gd" id="1_4f7q8"]
+[ext_resource type="PackedScene" uid="uid://0rvd3a2xla3q" path="res://MenuScenes/input_line.tscn" id="2_i5nkm"]
+
+[node name="BottomMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_4f7q8")
+
+[node name="Drawer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OuterLayout" type="VBoxContainer" parent="Drawer"]
+layout_mode = 2
+
+[node name="Handle" type="Button" parent="Drawer/OuterLayout"]
+layout_mode = 2
+
+[node name="InputLine" parent="Drawer/OuterLayout" instance=ExtResource("2_i5nkm")]
+layout_mode = 2
