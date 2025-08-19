@@ -9,15 +9,22 @@ var isOpen: bool = false
 var tabHeight: float = 0.0
 
 @onready var drawer : PanelContainer = $Drawer
-@onready var handle : Button = $Drawer/OuterLayout/Handle
-@onready var nameLabel : InputLine = $Drawer/OuterLayout/InputLine
+@onready var handle : Button = $Drawer/OuterLayout/HandleLayout/Handle
+@onready var handleFillerLeft : Panel = $Drawer/OuterLayout/HandleLayout/HandleLeft
+@onready var handleFillerRight : Panel = $Drawer/OuterLayout/HandleLayout/HandleRight
 
 func _ready() -> void:
-	#drawer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	#self.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
 	#self.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
 	self.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	# Hook up signals
+	
+	handleFillerLeft.size_flags_horizontal = Panel.SIZE_EXPAND_FILL
+	handleFillerLeft.size_flags_stretch_ratio = 4
+	handle.size_flags_horizontal = Button.SIZE_EXPAND_FILL
+	handle.size_flags_stretch_ratio = 2
+	handleFillerRight.size_flags_horizontal = Panel.SIZE_EXPAND_FILL
+	handleFillerRight.size_flags_stretch_ratio = 4
+	
+	
 	handle.pressed.connect(onHandlePressed)
 	
 	drawer.anchor_left = 0.0
@@ -26,29 +33,23 @@ func _ready() -> void:
 	drawer.anchor_bottom = 1.0
 	drawer.offset_left = 0
 	drawer.offset_right = 0
-	# React to window resizes
+	
 	resized.connect(onResized)
 	
 	await get_tree().process_frame
 	tabHeight = clampf(handle.size.y + tabExtraMargin, 0.0, drawerHeight - 1.0)
 	
-	# Initial layout & state
 	isOpen = false
 	setDrawerInstant(isOpen)
 	updateHandleArrow()
-	nameLabel.setInputLine("Text", "InputText")
 
 func onResized() -> void:
-	# Keep drawer aligned after a resize
 	tabHeight = clampf(handle.size.y + tabExtraMargin, 0.0, drawerHeight - 1.0)
 	setDrawerInstant(isOpen)
 
 func drawerOffset(open: bool) -> float:
-	# Visible: top of drawer sits at bottom - height. Hidden: moved just below screen.
-	if open:
-		return -drawerHeight
-	else:
-		return -tabHeight
+	if open: return -drawerHeight
+	else: return -tabHeight
 	
 func setDrawerInstant(open: bool) -> void:
 	var offset = drawerOffset(open)
@@ -65,6 +66,5 @@ func toggle(open: bool = !isOpen) -> void:
 	tw.parallel().tween_property(drawer, "offset_top", drawerOffset(open), slideTime)
 
 func updateHandleArrow() -> void:
-	# ▲ when closed (press to open), ▼ when open (press to close)
 	handle.text = "▼" if isOpen else "▲"
 	handle.tooltip_text = "Hide menu" if isOpen else "Show menu"

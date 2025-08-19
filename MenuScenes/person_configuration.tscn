@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbpstsp0yxwyy"]
+
+[ext_resource type="PackedScene" uid="uid://0rvd3a2xla3q" path="res://MenuScenes/input_line.tscn" id="1_e74eu"]
+[ext_resource type="Script" uid="uid://cakx0ctbgck5t" path="res://MenuScenes/scripts/person_configuration.gd" id="1_oydx1"]
+
+[node name="PersonConfiguration" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_oydx1")
+
+[node name="MainContainter" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VLayout" type="VBoxContainer" parent="MainContainter"]
+layout_mode = 2
+
+[node name="InputLine" parent="MainContainter/VLayout" instance=ExtResource("1_e74eu")]
+layout_mode = 2

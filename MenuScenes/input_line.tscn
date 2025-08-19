@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bhqly6rrpp7uj" path="res://MenuScenes/scripts/input_line.gd" id="1_cj7e5"]
 
 [node name="InputLine" type="HBoxContainer"]
-offset_right = 40.0
+offset_right = 456.0
 offset_bottom = 40.0
 script = ExtResource("1_cj7e5")
 

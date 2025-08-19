@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://u2xhkdukfws8"]
 
 [ext_resource type="Script" uid="uid://tq34h0umam4s" path="res://MenuScenes/scripts/bottom_menu.gd" id="1_4f7q8"]
-[ext_resource type="PackedScene" uid="uid://0rvd3a2xla3q" path="res://MenuScenes/input_line.tscn" id="2_i5nkm"]
+[ext_resource type="PackedScene" uid="uid://cbpstsp0yxwyy" path="res://MenuScenes/person_configuration.tscn" id="2_i5nkm"]
 
 [node name="BottomMenu" type="Control"]
 layout_mode = 3
@@ -18,8 +18,19 @@ offset_bottom = 40.0
 [node name="OuterLayout" type="VBoxContainer" parent="Drawer"]
 layout_mode = 2
 
-[node name="Handle" type="Button" parent="Drawer/OuterLayout"]
+[node name="HandleLayout" type="HBoxContainer" parent="Drawer/OuterLayout"]
 layout_mode = 2
 
-[node name="InputLine" parent="Drawer/OuterLayout" instance=ExtResource("2_i5nkm")]
+[node name="HandleLeft" type="Panel" parent="Drawer/OuterLayout/HandleLayout"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Handle" type="Button" parent="Drawer/OuterLayout/HandleLayout"]
+layout_mode = 2
+
+[node name="HandleRight" type="Panel" parent="Drawer/OuterLayout/HandleLayout"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="PersonConfiguration" parent="Drawer/OuterLayout" instance=ExtResource("2_i5nkm")]
 layout_mode = 2
