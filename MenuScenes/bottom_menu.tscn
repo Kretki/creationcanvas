@@ -10,7 +10,6 @@ mouse_filter = 2
 script = ExtResource("1_4f7q8")
 
 [node name="Drawer" type="PanelContainer" parent="."]
-self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -34,3 +33,4 @@ layout_mode = 2
 
 [node name="PersonConfiguration" parent="Drawer/OuterLayout" instance=ExtResource("2_i5nkm")]
 layout_mode = 2
+contentPadding = 12

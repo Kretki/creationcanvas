@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7omifgst1hiw"]
+[gd_scene load_steps=3 format=3 uid="uid://c7omifgst1hiw"]
 
 [ext_resource type="PackedScene" uid="uid://u2xhkdukfws8" path="res://MenuScenes/bottom_menu.tscn" id="1_hbvsn"]
+[ext_resource type="Script" uid="uid://dj6l2rcsittmt" path="res://MenuScenes/bottom_panel.gd" id="1_hejmr"]
 
 [node name="BottomPanel" type="HBoxContainer"]
 anchors_preset = 12
@@ -11,12 +12,10 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_hejmr")
 
 [node name="BottomMenu" parent="." instance=ExtResource("1_hbvsn")]
 layout_mode = 2
 
 [node name="BottomMenu2" parent="." instance=ExtResource("1_hbvsn")]
-layout_mode = 2
-
-[node name="BottomMenu3" parent="." instance=ExtResource("1_hbvsn")]
 layout_mode = 2

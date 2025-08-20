@@ -5,20 +5,19 @@
 
 [node name="PersonConfiguration" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_oydx1")
 
-[node name="MainContainer" type="PanelContainer" parent="."]
+[node name="MainContainter" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VLayout" type="VBoxContainer" parent="MainContainer"]
+[node name="VLayout" type="VBoxContainer" parent="MainContainter"]
 layout_mode = 2
 
-[node name="InputLine" parent="MainContainer/VLayout" instance=ExtResource("1_e74eu")]
+[node name="InputLine" parent="MainContainter/VLayout" instance=ExtResource("1_e74eu")]
 layout_mode = 2
-
-[node name="Submit" type="Button" parent="MainContainer/VLayout"]
-layout_mode = 2
-text = "Submit"

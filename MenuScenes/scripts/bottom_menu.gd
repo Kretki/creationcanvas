@@ -3,7 +3,8 @@ class_name BottomMenu
 
 @export var drawerHeight : float = 240.0
 @export var slideTime : float = 0.25
-@export var tabExtraMargin: float = 20.0
+@export var tabExtraMargin : float = 20.0
+@export var btnStretchRatio : float = 0.2
 
 var isOpen: bool = false
 var tabHeight: float = 0.0
@@ -17,13 +18,12 @@ func _ready() -> void:
 	#self.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
 	self.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	
-	handleFillerLeft.size_flags_horizontal = Panel.SIZE_EXPAND_FILL
-	handleFillerLeft.size_flags_stretch_ratio = 4
-	handle.size_flags_horizontal = Button.SIZE_EXPAND_FILL
-	handle.size_flags_stretch_ratio = 2
-	handleFillerRight.size_flags_horizontal = Panel.SIZE_EXPAND_FILL
-	handleFillerRight.size_flags_stretch_ratio = 4
-	
+	handleFillerLeft.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	handleFillerLeft.size_flags_stretch_ratio = 10 * (1 - btnStretchRatio) / 2
+	handle.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	handle.size_flags_stretch_ratio = 10 * btnStretchRatio
+	handleFillerRight.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	handleFillerRight.size_flags_stretch_ratio = 10 * (1 - btnStretchRatio) / 2
 	
 	handle.pressed.connect(onHandlePressed)
 	
@@ -42,6 +42,9 @@ func _ready() -> void:
 	isOpen = false
 	setDrawerInstant(isOpen)
 	updateHandleArrow()
+	
+	var empty := StyleBoxEmpty.new()
+	drawer.add_theme_stylebox_override("panel", empty)
 
 func onResized() -> void:
 	tabHeight = clampf(handle.size.y + tabExtraMargin, 0.0, drawerHeight - 1.0)
